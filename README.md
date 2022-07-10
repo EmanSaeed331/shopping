@@ -16,3 +16,13 @@ An  E-commerce API 😻
 ```
  $ npm start
 ```
+# 🌲 Project structure  
+    └───src
+        ├───DB
+        └───modules
+            ├───cart
+            ├───coupons
+            ├───order
+            ├───products
+            ├───stores
+            └───user
