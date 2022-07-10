@@ -12,4 +12,7 @@ An  E-commerce API 😻
 |DB_CONN_STRING| string | **Required** for connecting in DB |
 |PORT| number | **Required** port |
 
-
+# run app 
+```
+ $ npm start
+```
