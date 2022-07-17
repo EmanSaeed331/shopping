@@ -19,9 +19,13 @@ const deleteUser = (id:CreateUser)=>{
     return userRepository.deleteUser(id)
 }
 
+const loginUser = (email:CreateUser , password:CreateUser)=>{
+    return userRepository.login(email , password);
+}
 export const userServices = { 
     createUser,
     getUsers, 
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser
 }

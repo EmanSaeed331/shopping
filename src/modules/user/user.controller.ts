@@ -32,4 +32,19 @@ userRouter.delete('/:id',async(req,res)=>{
     res.json({'message':'delete user successfully'})
 })
 
+// Login 
+userRouter.post('/Login',async(req,res) => {
+    try{
+    let email =req.body.email;
+    let password =req.body.password;
+    let user = await userServices.loginUser(email,password);
+    res.json({user})
+    }
+    catch(error){
+        res.json({'message':error})
+
+    }
+    
+})
+
 export default userRouter;
