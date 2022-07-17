@@ -1,11 +1,12 @@
 // External Dependencies
 import { Router } from 'express';
 import { userServices } from './user.services';
+import {auth} from './middleware/auth'
+
 const userRouter = Router();
 
-
 // GET
-userRouter.get('/',async (req,res)=>{
+userRouter.get('/',auth.verifyToken,async(req,res)=>{
     let users = await userServices.getUsers()
     console.log(`users Controller ${users}`)
     res.json({users:users})
