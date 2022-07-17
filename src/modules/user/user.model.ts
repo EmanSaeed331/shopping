@@ -6,7 +6,7 @@ const userSchema = new Mongoose.Schema({
      lastName:Joi.string().alphanum().min(3).max(30).required(),
      email:Joi.string().email({minDomainSegments:2 , tlds:{'allow':['com','net']}}).required(),
      password:Joi.string().pattern( new RegExp('^[a-zA-Z0-9]{3,30}')),
-     whishList:Joi.array().default(null),
+     wishList:Joi.array().default(null),
      OnlinePayment:ObjectId,
     isActive:Joi.boolean().default(false),
     phone:Joi.number().required(),
