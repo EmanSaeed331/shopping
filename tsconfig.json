@@ -1,0 +1,10 @@
+{
+
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "include": ["src"],
+    "exclude": ["node_modules"],
+    "compilerOptions": {
+      // ... rest
+      "typeRoots": ["./node_modules/@types", "./src/types"]
+    }
+  }

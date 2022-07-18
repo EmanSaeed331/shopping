@@ -15,7 +15,8 @@ const userSchema = new Mongoose.Schema({
         cardType:Joi.string().default(null), 
         cardNumber:Joi.number().default(null),
         cardDescription:Joi.string().default(null),
-    })
+    }),
+    token:Joi.string(),
 })
 const userModel = mongoose.model('User',userSchema)
 export default userModel;

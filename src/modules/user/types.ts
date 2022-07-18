@@ -7,5 +7,6 @@ export interface CreateUser{
     creditCard:string,
     isActive:boolean,
     OnlinePayment:string,
-    Phone:number
+    Phone:number,
+    token:string
 }

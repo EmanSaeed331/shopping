@@ -1,11 +1,12 @@
 // External Dependencies
 import { Router } from 'express';
 import { userServices } from './user.services';
+import {auth} from './middleware/auth'
+
 const userRouter = Router();
 
-
 // GET
-userRouter.get('/',async (req,res)=>{
+userRouter.get('/',auth.verifyToken,async(req,res)=>{
     let users = await userServices.getUsers()
     console.log(`users Controller ${users}`)
     res.json({users:users})
@@ -17,7 +18,7 @@ userRouter.post('/',async(req,res)=>{
     res.json({user:user})
 })
 // PUT
-userRouter.patch('/:id',async(req,res)=>{
+userRouter.patch('/:id',auth.verifyToken,async(req,res)=>{
     let id:any = req.params.id;
     let user:any = await userServices.updateUser(id ,req.body);
     await user.save();  
@@ -25,10 +26,25 @@ userRouter.patch('/:id',async(req,res)=>{
 })
 // DELETE 
 
-userRouter.delete('/:id',async(req,res)=>{
+userRouter.delete('/:id',auth.verifyToken,async(req,res)=>{
     let id:any = req.params.id
     await userServices.deleteUser(id)
     res.json({'message':'delete user successfully'})
+})
+
+// Login 
+userRouter.post('/Login',auth.verifyToken,async(req,res) => {
+    try{
+    let email =req.body.email;
+    let password =req.body.password;
+    let user = await userServices.loginUser(email,password);
+    res.json({user})
+    }
+    catch(error){
+        res.json({'message':error})
+
+    }
+    
 })
 
 export default userRouter;
