@@ -5,8 +5,9 @@ import jwt from 'jsonwebtoken';
 const createUser = async (data:CreateUser)=>{
     let user = await new userModel(data);
     // Create token
+    console.log(user.id , user.email);
     const token:any  = jwt.sign(
-        { user_id: user._id },
+        { id: user.id , email:user.email },
         process.env.TOKEN_KEY ||'jsontoken3498',
        
       );
@@ -24,7 +25,24 @@ const getAllUsers = async()=>{
 // Login 
 const login = async (email:CreateUser , password:CreateUser)=>{
     try{
-       return await userModel.findOne({email ,password}).exec();
+        let user  = await userModel.findOne({email ,password}).exec();
+        if (!user) { 
+            return 'Invalid Mail or Password ' ;
+        }
+        const token:any  = jwt.sign(
+            { id: user.id , email:user.email },
+            process.env.TOKEN_KEY ||'jsontoken3498',
+            {
+                expiresIn:'2h',
+            }
+           
+          );
+        
+          console.log(user.id , user.email);
+
+          // save user token
+          user.token = token ; 
+        return user;
     } 
     catch(error) {
         return `error in Login ${error}`

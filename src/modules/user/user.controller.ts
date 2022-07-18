@@ -18,7 +18,7 @@ userRouter.post('/',async(req,res)=>{
     res.json({user:user})
 })
 // PUT
-userRouter.patch('/:id',async(req,res)=>{
+userRouter.patch('/:id',auth.verifyToken,async(req,res)=>{
     let id:any = req.params.id;
     let user:any = await userServices.updateUser(id ,req.body);
     await user.save();  
@@ -26,14 +26,14 @@ userRouter.patch('/:id',async(req,res)=>{
 })
 // DELETE 
 
-userRouter.delete('/:id',async(req,res)=>{
+userRouter.delete('/:id',auth.verifyToken,async(req,res)=>{
     let id:any = req.params.id
     await userServices.deleteUser(id)
     res.json({'message':'delete user successfully'})
 })
 
 // Login 
-userRouter.post('/Login',async(req,res) => {
+userRouter.post('/Login',auth.verifyToken,async(req,res) => {
     try{
     let email =req.body.email;
     let password =req.body.password;
