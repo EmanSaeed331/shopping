@@ -1,23 +1,32 @@
-import { objectId } from "mongodb-typescript";
 import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 
 const orderSchema = new mongoose.Schema({
-    userId:objectId,
+    userId:{type:ObjectId,ref:"User"},
     // !update Cart 
-    items:String,
-    totalPrice:String, 
+    items:[
+        {
+          product: {type:ObjectId, ref: "Products" },
+          price: Number,
+          quantity: Number,
+          total: Number
+        }
+    ],
+    totalPrice:{type:Number}, 
     // ! enum 
     // Status : pending - assing by admin ( assingened , dilerved , canceld ) 
-    status:String,
+    status:{type:String,enum:['pending','assigned','delivered','canceled']},
     // Add additonal attributes of credit card 
-    creditCard:String,
-    // ! ref for user 
-    deliveryAgentId:ObjectId,
+    creditCard:{
+        cardType:{type:String },
+        cardNumber:{type:String},
+        cardDescription:{type:String},
+    },     // ! ref for user 
+    deliveryAgentId:{type:ObjectId,ref:'User'},
     shippingAddress:{
-        city:{},
-        street:{},
+        city:{type:String},
+        street:{type:String},
     } 
-
-})
-const orderModel = mongoose.model('Order',orderSchema)
+});
+const orderModel = mongoose.model('Order',orderSchema);
 export default orderModel;

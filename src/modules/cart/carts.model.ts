@@ -1,27 +1,14 @@
-import { objectId } from "mongodb-typescript";
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema({
     
-    items:objectId,
-    // ! refrence 
-    userId:objectId,
-    // ! refrence 
-    coupoun: objectId , 
+    items:{type:ObjectId , ref:'Order.items'},
+    userId:{type:ObjectId,ref:'User'},
+    coupon: {type:ObjectId,ref:'coupon'}, 
     totalPrice:Number
 
 })
-const cartModel = mongoose.model('cart',cartSchema)
+const cartModel = mongoose.model('Cart',cartSchema)
 export default cartModel;
 
-// ! Update:Items 
-/*
-items: [
-      {
-        product: { type: db.SchemaTypes.ObjectId, ref: "Meal" },
-        price: Number,
-        quantity: Number,
-        total: Number
-      },
-
-*/ 
