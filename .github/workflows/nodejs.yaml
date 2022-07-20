@@ -21,6 +21,6 @@ jobs:
         with:
           node-version: 16.15.1
       - name: Install Dependencies
-        run:  yarn install --flat
+        run:  npm install 
       - name: run start command
-        run: yarn start --f
+        run: npm start 
