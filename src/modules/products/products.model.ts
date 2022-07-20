@@ -6,11 +6,12 @@ const productSchema = new mongoose.Schema({
     productDescription:String,
     price:Number,
     discount:Number,
+    // ! refrence for store 
     storeId:objectId,
     image:String,
     category:String,
     quantity:Number,
 
 })
-const productModel = mongoose.model('product',productSchema)
+const productModel = mongoose.model('products',productSchema)
 export default productModel;
