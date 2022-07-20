@@ -5,6 +5,7 @@ import "dotenv/config";
 
 const app = express ();
 app.use(json());
+
 require('./DB/db')
 
 app.use('/user',userRouter);
