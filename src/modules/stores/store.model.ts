@@ -9,12 +9,11 @@ const storeSchema = new Mongoose.Schema({
       type:Number , 
       enum:[0,1,2,3,4,5]
    },
-   // ! enum -- 
    category:{
       type:ObjectId,
       ref:'products'
    },
-   admins:[{type:ObjectId , ref:'User'}],
+   admins:[{type:ObjectId , ref:'Admin', required:true}],
 })
 const storeModel = mongoose.model('Store',storeSchema)
 export default storeModel;
