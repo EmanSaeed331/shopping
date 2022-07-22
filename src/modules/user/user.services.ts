@@ -11,7 +11,7 @@ const getUsers = ()=>{
 }
 
 const updateUser = (id:CreateUser , data:CreateUser)=>{
-    let user = userRepository.updateUSer(id , data);
+    const user = userRepository.updateUSer(id , data);
     return user 
 }
 

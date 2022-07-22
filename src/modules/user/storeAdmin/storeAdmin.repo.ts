@@ -3,12 +3,12 @@ import { CreateAdmin } from "./types";
 
  //   ! 1- Create user account 
 const createAdmin = async (data:CreateAdmin)=>{
-    let admin = new storeAdminModel(data);
+    const admin = new storeAdminModel(data);
     return admin ;
 }
 
 const signIn = async( email:CreateAdmin, password:CreateAdmin)=>{
-    let admin = await storeAdminModel.findOne({email,password});
+    const  admin = await storeAdminModel.findOne({email,password});
     if (!admin){
         return ' Invalid email or password ';
     }
@@ -16,7 +16,7 @@ const signIn = async( email:CreateAdmin, password:CreateAdmin)=>{
 }
 
 const updateAdmin = async(id:CreateAdmin,data:CreateAdmin)=>{
-    let admin = await storeAdminModel.findByIdAndUpdate({id,data});
+    const admin = await storeAdminModel.findByIdAndUpdate({id,data});
     if(!admin)
     {
         return 'admin is not valid';

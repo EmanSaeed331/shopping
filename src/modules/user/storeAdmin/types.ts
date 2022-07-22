@@ -1,7 +1,7 @@
 export interface CreateAdmin{
-    firstName:String;
-    lastName:String;
-    email:String;
-    password:Number;
-    phone:Number;
+    firstName:string;
+    lastName:string;
+    email:string;
+    password:number;
+    phone:number;
 }

@@ -3,7 +3,7 @@ import userModel from "./user.model";
 import jwt from 'jsonwebtoken';
 // create user 
 const createUser = async (data:CreateUser)=>{
-    let user = await new userModel(data);
+    const user = await new userModel(data);
     // Create token
     console.log(user.id , user.email);
     const token:any  = jwt.sign(
@@ -18,14 +18,14 @@ const createUser = async (data:CreateUser)=>{
 
 // get user
 const getAllUsers = async()=>{
-    let users = await userModel.find({});
+    const users = await userModel.find({});
     return users; 
 }
 
 // Login 
 const login = async (email:CreateUser , password:CreateUser)=>{
     try{
-        let user  = await userModel.findOne({email ,password}).exec();
+        const user  = await userModel.findOne({email ,password}).exec();
         if (!user) { 
             return 'Invalid Mail or Password ' ;
         }
@@ -51,7 +51,7 @@ const login = async (email:CreateUser , password:CreateUser)=>{
 }
 // update user 
 const updateUSer = async (id:CreateUser , data:CreateUser)=>{
-    let user = await userModel.findByIdAndUpdate(id,data);
+    const user = await userModel.findByIdAndUpdate(id,data);
     if (!user) {
         return 'user not found '
     }
