@@ -29,7 +29,7 @@ const adminSchema = new Mongoose.Schema({
   
   
 })
-// Virtual relation 
+// Virtual relation  
 adminSchema.virtual('Store',{
     ref:'Store',
     localField:'_id',

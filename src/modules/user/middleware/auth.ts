@@ -18,3 +18,10 @@ const verifyToken = (req:Request, res:Response,next:NextFunction) => {
     return next();
 }
 export const auth = {verifyToken}
+
+
+// ! Todo make it on helper   , change name with jwt genertator 
+/*
+    ! - it make a service for a controller -- does not need any req or res . 
+
+*/ 

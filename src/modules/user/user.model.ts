@@ -21,7 +21,8 @@ const userSchema = new Mongoose.Schema({
         required:true
      },
      wishList:[{type:ObjectId , ref:"products"}],
-     OnlinePayment:[{type:ObjectId, ref:"cart"}],
+     //! it must be on cart , user must have just one cart . 
+     onlinePayment:[{type:ObjectId, ref:"cart"}],
      isActive:{
         type:Boolean,
     },
@@ -46,3 +47,7 @@ const userSchema = new Mongoose.Schema({
 })
 const userModel = mongoose.model('User',userSchema)
 export default userModel;
+
+
+// ! TOdo --> add product to wish List , remove wishList  ( Add to repo )
+// ! Bcrypt for password Presave
