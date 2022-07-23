@@ -8,7 +8,7 @@ import "dotenv/config";
 const app = express ();
 app.use(json());
 
-require('./DB/db')
+require('./config/db')
 
 app.use('/user',userRouter);
 app.use('/admin',adminRouter);

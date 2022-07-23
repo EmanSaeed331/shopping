@@ -1,7 +1,8 @@
 import { CreateUser } from "./types";
 import userModel from "./user.model";
 import jwt from 'jsonwebtoken';
-// create user 
+import { crud } from "../../CRUD/crud";
+ // create user 
 // ! todo 
 // Change name of function 
 // change type of data --> to be generic 
@@ -83,7 +84,8 @@ export const userRepository = {
     getAllUsers,
     updateUSer,
     deleteUser,
-    login
+    login,
+    
 }
 // ! TOdo --> add product to wish List , remove wishList  ( Add to repo )
 // ! Validation by email 

@@ -8,7 +8,7 @@ const createAdmin = async (data:CreateAdmin)=>{
 }
 
 const signIn = async( email:CreateAdmin, password:CreateAdmin)=>{
-    const  admin = await storeAdminModel.findOne({email,password});
+    const admin = await storeAdminModel.findOne({email,password});
     if (!admin){
         return ' Invalid email or password ';
     }
