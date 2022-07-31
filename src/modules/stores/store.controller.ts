@@ -4,16 +4,12 @@ import { crud } from "../../CRUD/crud";
 import { Store } from "./types";
 import storemodel from "./store.model";
 
-// Create admin 
+// Create store 
 const createStore = (req:Request , res:Response) => { 
     const user =  crud.create(Store,storemodel);
     res.json({'user':user});
 }
 
-// read   All Users 
-/* const readStore = (req:Request , res:Response) => {
-    return crud.read(userModel) 
-} */
 // update Store 
 const updateStore =async (req:Request, res:Response) => { 
     const id = req.params.id;
