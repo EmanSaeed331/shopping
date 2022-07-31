@@ -17,6 +17,14 @@
         return await model.findOneAndDelete(id);
     }
 
+    // get data by Id 
+    async function getById (id:string,model:any){
+        const data = await model.findOne ({id});
+        if(!data) {
+            return 'id is not valid';
+        }
+        return data ; 
+    }
     // get by email 
  
     async function getByemail (email:string  , password:string, model:any) {
@@ -26,10 +34,12 @@
         }
         return user ; 
     }
+
 export const crud = {
     create,
     read,
     update,
     remove,
-    getByemail
+    getByemail,
+    getById
 }
