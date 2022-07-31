@@ -1,11 +1,11 @@
 import { Router, Request, Response } from 'express';
 import { adminController } from './admin.controller';
-const admin = Router();
+const adminRouter = Router();
 
 
-admin.post('/',(req:Request,res:Response)=>{adminController.createAdmin(req,res)});
-admin.patch('/:id',(req:Request,res:Response)=> {adminController.updateAdmin(req,res)});
-admin.delete('/:id',(req:Request,res:Response)=> {adminController.deleteAdmin(req,res)})
-admin.post('/login',(req:Request , res:Response) =>{adminController.loginAdmin(req,res)})
+adminRouter.post('/',(req:Request,res:Response)=>{adminController.createAdmin(req,res)});
+adminRouter.patch('/:id',(req:Request,res:Response)=> {adminController.updateAdmin(req,res)});
+adminRouter.delete('/:id',(req:Request,res:Response)=> {adminController.deleteAdmin(req,res)})
+adminRouter.post('/login',(req:Request , res:Response) =>{adminController.loginAdmin(req,res)})
 
-export default admin;
+export default adminRouter;
