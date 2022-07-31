@@ -1,11 +1,43 @@
-import { CreateUser, User } from "./types";
+import { CreateUser, User } from "./client/types";
 import userModel from "./user.model";
 import jwt from 'jsonwebtoken';
-import { crud } from "../../../CRUD/crud";
+import { crud } from "../../CRUD/crud";
 
 
 
-const createU = (user:User ) => { 
+const signUp = async()=>{
+  const user =  await crud.create(User,userModel);
+  return user;
+}
+const login = async (email:string , password:string)=>{
+
+  console.log(` Email .. ${email} + Password .. ${ password }`)
+  const user = await  crud.get({email , password} , userModel);
+  return user;
+}
+
+const updating = async(id:string)=>{
+    const user =await crud.update(id , User , userModel) ; 
+    if (!user) { 
+     console.log('user Not found')
+     return ' User not found '
+    }
+  
+    return user; }
+
+const deleting = async(id:string)=>{
+
+  const user =await  crud.remove(id , userModel) ;
+  if ( !user) { 
+    console.log('user not deleted')
+  }
+  console.log('user deleted')
+ 
+  return user;
+}
+
+
+/* const createU = (user:User ) => { 
   return crud.create(user , userModel)
 }
 
@@ -113,19 +145,10 @@ const updateUSer = async (id:CreateUser , data:CreateUser)=>{
 
 const deleteUser = async (id:CreateUser)=>{
   return  await userModel.findOneAndDelete({id});
-}
+} */
 export const userRepository = { 
   
-    getUSer,
-    createU,
-    updateU,
-    deleteU,
-    createUser , 
-    getAllUsers,
-    updateUSer,
-    deleteUser,
-    login,
-    getUserByEmail
+   
     
 }
 

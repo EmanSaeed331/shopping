@@ -1,3 +1,15 @@
+export interface ProductsType {
+     productName:string,
+     productDescription:string,
+     price:number, 
+     discount:number, 
+     storeId:string,
+     image:string , 
+     category:string,
+     quantity:number
+}
+
+
 export class Products 
 {
     constructor

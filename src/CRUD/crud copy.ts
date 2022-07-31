@@ -1,14 +1,11 @@
 
    // Create u
-  async function create(data:object , model:any){
-        const newObj = await new model({data});
+  async function create<T>(data:T , model:any){
+        const newObj = await new model(data);
         return newObj;
          }
     // read  all users 
-    async function read(model:any){
-        return await model.find({});
-    }
-    async function get(model:any , filter:object){
+    async function read(model:any , filter:object){
         return await model.find(filter);
     }
     // update
@@ -21,22 +18,22 @@
     }
 
     // get data by Id 
-    async function getById (id:string,model:any){
-        const data = await model.findOne ({id});
+    async function get (filter:object,model:any){
+        const data = await model.findOne (filter);
         if(!data) {
             return 'id is not valid';
         }
         return data ; 
     }
     // get by email 
- 
+/*  
     async function getByemail (email:string  , password:string, model:any) {
         const user = await model.findOne({email , password}) ; 
         if (! user ) {
             return ' Email is not valid';
         }
         return user ; 
-    }
+    } */
 
 export const crud = {
     create,
@@ -44,6 +41,5 @@ export const crud = {
     update,
     remove,
     getByemail,
-    getById,
     get
 }

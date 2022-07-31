@@ -1,45 +1,42 @@
 
 import { Request , Response } from "express";
-import { crud } from "../../CRUD/crud";
-import { Products } from "./types";
-import productModel from "./products.model";
+import productModel from './products.model';
+import { productsRepo } from "./product.repo";
 
-// Create admin 
+// Create Product
 const createProduct= (req:Request , res:Response) => { 
-    const user =  crud.create(Products,productModel);
-    res.json({'user':user});
+    const product = req.body;
+    const storeData = productsRepo.createProduct(product);
+    res.json({'user':storeData});
 }
 
-// update Product
-const updateProduct=async (req:Request, res:Response) => { 
-    const id = req.params.id;
-    const product=await crud.update(id , Products , productModel) ; 
-    if (!product) { 
-     console.log('user Not found')
-     return ' User not found '
-    }
-    res.json({'Store':product});
-    return product; }
-// delete Product
-const deleteProduct= async(req:Request , res:Response) =>{
-    const id = req.params.id;
-    const deletedProduct=await  crud.remove(id , productModel) ;
-    if ( !deletedProduct) { 
-      console.log('user not deleted')
-    }
-    console.log('user deleted')
-    res.json({'message': 'Productdeleted'})
-    return deletedProduct;
+
+const updateProduct= async (req:Request,res:Response) =>{
+    const id = req.params.id; 
+    const product= await productsRepo.updating(id);
+    if(!product) res.json({'message':'invalid store'});
+    res.json({'updatedStore':product});
 }
+
+const deleteProduct= async (req:Request, res:Response) => {
+    const id = req.params.id;
+    const deletedProduct= productsRepo.deleting(id);
+    if(!deletedProduct) res.json({'message':'Invalid Id '})
+    res.json({'message':'deletedStore'})
+}
+
 
 const getProductById = async (req:Request,res:Response) => { 
         const id = req.params.id;
-        const Product= await  crud.getById(id, productModel);
-        res.json({'LoggedIn User ':Product})
+        const product= await  productsRepo.getProductById(id);
+        res.json({'product':product})
 }
-export const productController = {
-    createProduct,
-    updateProduct,
-    deleteProduct,
-    getProductById
-}
+
+export const productsController = 
+    {
+        createProduct,
+        updateProduct,
+        deleteProduct,
+        getProductById
+
+    }

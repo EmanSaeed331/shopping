@@ -1,3 +1,11 @@
+export interface StoteType {
+     storeName :string,
+     about:string,
+     rating:string,
+     category:string,
+     admins:string
+}
+
 export class Store  { 
     constructor( 
      public storeName :string,

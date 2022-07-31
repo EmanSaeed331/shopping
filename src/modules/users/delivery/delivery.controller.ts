@@ -1,51 +1,39 @@
-
 import { Request , Response } from "express";
-import { crud } from "../../../CRUD/crud";
-import { User } from "../user/types";
-import userModel from "../user/user.model";
+import { userRepository } from "../user.repositry";
 
-// Create admin 
-const createAdmin = (req:Request , res:Response) => { 
-    const user =  crud.create(User,userModel);
-    res.json({'user':user});
+// Create delivery 
+const createDelivery = (req:Request , res:Response) => { 
+    const data = req.body;
+    const delivery = userRepository.signUp(data)
+    res.json({'user':delivery});
 }
 
-// read   All Users 
-/* const readAdmin = (req:Request , res:Response) => {
-    return crud.read(userModel) 
-} */
-// update admin 
-const updateAdmin =async (req:Request, res:Response) => { 
+// Read delivery 
+const loginDelivery = (req:Request,res:Response)=>{
+    const email = req.body.email;
+    const password = req.body.password;
+    const delivery = userRepository.login(email,password);
+    if(!delivery) res.json({ message:'wrong email or password '});
+    res.json({'delivery':delivery})
+}
+// update delivery 
+const updateDelivery = (req:Request, res:Response) => {
     const id = req.params.id;
-    const admin =await crud.update(id , User , userModel) ; 
-    if (!admin) { 
-     console.log('user Not found')
-     return ' User not found '
-    }
-    res.json({'admin':admin});
-    return admin; }
-// delete admin 
-const deleteAdmin = async(req:Request , res:Response) =>{
-    const id = req.params.id;
-    const deletedAdmin =await  crud.remove(id , userModel) ;
-    if ( !deletedAdmin) { 
-      console.log('user not deleted')
-    }
-    console.log('user deleted')
-    res.json({'message': 'Admin deleted'})
-    return deletedAdmin;
+    const updatedelivery = userRepository.updating(id);
+    if(!updatedelivery) res.json({'message':'wrong id '});
+    res.json({'delivery':updatedelivery});
 }
 
-const loginAdmin = async (req:Request,res:Response) => { 
-        const email = req.body.email;
-        const password = req.body.password;
-        console.log(` Email .. ${email} + Password .. ${ password }`)
-        const user = await  crud.getByemail(email , password , userModel);
-        res.json({'LoggedIn User ':user})
+const deleteDelivery = (req:Request,res:Response) =>{
+    const id = req.params.id;
+    const deletedelivery = userRepository.deleting(id);
+    if (!deletedelivery) res.json({'message':'wrong id'});
+    res.json({'deleteddelivery':deletedelivery});
 }
+
 export const deliveryController = {
-    createAdmin,
-    updateAdmin,
-    deleteAdmin,
-    loginAdmin
+    createDelivery,
+    loginDelivery,
+    updateDelivery,
+    deleteDelivery
 }

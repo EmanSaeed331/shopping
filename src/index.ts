@@ -1,6 +1,6 @@
 import express from 'express';
 import {json} from 'body-parser';
-import userRouter from './modules/users/user/user.router';
+import userRouter from './modules/users/client/client.router';
 import adminStoreRouter from './modules/users/storeAdmin/adminStore.routes';
 
 import "dotenv/config";
