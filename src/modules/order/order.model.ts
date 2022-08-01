@@ -28,5 +28,5 @@ const orderSchema = new mongoose.Schema({
         street:{type:String},
     } 
 });
-const orderModel = mongoose.model('Order',orderSchema);
-export default orderModel;
+const ordersModel = mongoose.model('Order',orderSchema);
+export default ordersModel;

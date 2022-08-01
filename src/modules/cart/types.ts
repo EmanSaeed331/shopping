@@ -1,4 +1,11 @@
-export class Cart {
+export interface CartsType {
+     items:string,
+     userId:string,
+     coupon:string,
+     totalPrice:number
+}
+
+export class Carts {
     constructor(
         public items:string,
         public userId:string,

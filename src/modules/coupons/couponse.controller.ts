@@ -1,45 +1,41 @@
 
 import { Request , Response } from "express";
-import { crud } from "../../CRUD/crud";
-import { Couponse } from "./types";
-import couponseModel from "./coupons.model";
+import { couponseRepo } from "./coupons.repo";
 
 
 const createCouponse= (req:Request , res:Response) => { 
-    const couponse =  crud.create(Couponse,couponseModel);
-    res.json({'user':couponse});
+    const coupon = req.body;
+    const couponData = couponseRepo.createCouponse(coupon);
+    res.json({'coupon':coupon});
 }
 
 
-const updateCouponse=async (req:Request, res:Response) => { 
-    const id = req.params.id;
-    const couponse=await crud.update(id , Couponse , couponseModel) ; 
-    if (!couponse) { 
-     console.log('user Not found')
-     return ' User not found '
-    }
-    res.json({'Store':couponse});
-    return couponse; }
-
-const deleteCouponse= async(req:Request , res:Response) =>{
-    const id = req.params.id;
-    const deletedCouponse=await  crud.remove(id , couponseModel) ;
-    if ( !deletedCouponse) { 
-      console.log('user not deleted')
-    }
-    console.log('user deleted')
-    res.json({'message': 'Productdeleted'})
-    return deletedCouponse;
+const updateCouponse= async (req:Request,res:Response) =>{
+    const id = req.params.id; 
+    const coupon= await couponseRepo.updating(id);
+    if(!coupon) res.json({'message':'invalid store'});
+    res.json({'updatedStore':coupon});
 }
+
+const deleteCouponse= async (req:Request, res:Response) => {
+    const id = req.params.id;
+    const deletedcoupon= couponseRepo.deleting(id);
+    if(!deletedcoupon) res.json({'message':'Invalid Id '})
+    res.json({'message':'deletedCoupone'})
+}
+
 
 const getCouponseById = async (req:Request,res:Response) => { 
         const id = req.params.id;
-        const Couponse= await  crud.getById(id, couponseModel);
-        res.json({'LoggedIn User ':Couponse})
+        const couponse= await  couponseRepo.getCouponseById(id);
+        res.json({'Couponse':couponse})
 }
-export const couponseController = {
-    createCouponse,
-    updateCouponse,
-    deleteCouponse,
-    getCouponseById
-}
+
+export const CouponseController = 
+    {
+        createCouponse,
+        updateCouponse,
+        deleteCouponse,
+        getCouponseById
+
+    }

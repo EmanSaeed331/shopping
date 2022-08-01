@@ -1,3 +1,11 @@
+export interface CouponsType {
+     ownerStore:string,
+     codeNumber:number,
+     quantity:number,
+     valueOfDiscount:number,
+     cartId:number
+}
+
 export class Couponse {
     constructor(
         public ownerStore:string,

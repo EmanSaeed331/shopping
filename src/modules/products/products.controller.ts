@@ -1,6 +1,5 @@
 
 import { Request , Response } from "express";
-import productModel from './products.model';
 import { productsRepo } from "./product.repo";
 
 // Create Product

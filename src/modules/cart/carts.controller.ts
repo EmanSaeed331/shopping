@@ -1,45 +1,41 @@
 
 import { Request , Response } from "express";
-import { crud } from "../../CRUD/crud";
-import { Cart } from "./types";
-import cartModel from "./carts.model";
+import { cartsRepo } from "./carts.repo";
 
-
-const createCart= (req:Request , res:Response) => { 
-    const couponse =  crud.create(Cart,cartModel);
-    res.json({'user':couponse});
+// Create Cartes
+const createCarts= (req:Request , res:Response) => { 
+    const cartes = req.body;
+    const cartData = cartsRepo.createCarts(cartes);
+    res.json({'user':cartData});
 }
 
 
-const updateCart=async (req:Request, res:Response) => { 
-    const id = req.params.id;
-    const couponse=await crud.update(id , Cart , cartModel) ; 
-    if (!couponse) { 
-     console.log('user Not found')
-     return ' User not found '
-    }
-    res.json({'Store':couponse});
-    return couponse; }
-
-const deleteCart =async(req:Request , res:Response) =>{
-    const id = req.params.id;
-    const deletedCouponse=await  crud.remove(id , cartModel) ;
-    if ( !deletedCouponse) { 
-      console.log('user not deleted')
-    }
-    console.log('user deleted')
-    res.json({'message': 'Productdeleted'})
-    return deletedCouponse;
+const updateCarts= async (req:Request,res:Response) =>{
+    const id = req.params.id; 
+    const Cartes= await cartsRepo.updating(id);
+    if(!Cartes) res.json({'message':'invalid store'});
+    res.json({'updatedStore':Cartes});
 }
 
-const getCartById = async (req:Request,res:Response) => { 
+const deleteCarts= async (req:Request, res:Response) => {
+    const id = req.params.id;
+    const deletedCartes= cartsRepo.deleting(id);
+    if(!deletedCartes) res.json({'message':'Invalid Id '})
+    res.json({'message':'deletedStore'})
+}
+
+
+const getCartsById = async (req:Request,res:Response) => { 
         const id = req.params.id;
-        const Couponse= await  crud.getById(id, cartModel);
-        res.json({'LoggedIn User ':Couponse})
+        const cartes= await  cartsRepo.getCartsById(id);
+        res.json({'Cartes':cartes})
 }
-export const cartController = {
-    createCart,
-    updateCart,
-    deleteCart,
-    getCartById
-}
+
+export const cartesController = 
+    {
+        createCarts,
+        updateCarts,
+        deleteCarts,
+        getCartsById
+
+    }

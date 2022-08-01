@@ -1,45 +1,41 @@
 
 import { Request , Response } from "express";
-import { crud } from "../../CRUD/crud";
-import { Order } from "./types";
-import orderModel from "./order.model";
+import { OrdersRepo } from "./orders.repo";
 
-// Create order 
-const createOrder= (req:Request , res:Response) => { 
-    const user =  crud.create(Order,orderModel);
-    res.json({'user':user});
+// Create Orders
+const createOrders= (req:Request , res:Response) => { 
+    const orders = req.body;
+    const orderData = OrdersRepo.createOrders(orders);
+    res.json({'user':orderData});
 }
 
-// update Product
-const updateOrder=async (req:Request, res:Response) => { 
-    const id = req.params.id;
-    const product=await crud.update(id , Order , orderModel) ; 
-    if (!product) { 
-     console.log('user Not found')
-     return ' User not found '
-    }
-    res.json({'Store':product});
-    return product; }
-// delete Product
-const deleteOrder= async(req:Request , res:Response) =>{
-    const id = req.params.id;
-    const deletedProduct=await  crud.remove(id , orderModel) ;
-    if ( !deletedProduct) { 
-      console.log('user not deleted')
-    }
-    console.log('user deleted')
-    res.json({'message': 'Productdeleted'})
-    return deletedProduct;
+
+const updateOrders= async (req:Request,res:Response) =>{
+    const id = req.params.id; 
+    const Orders= await OrdersRepo.updating(id);
+    if(!Orders) res.json({'message':'invalid store'});
+    res.json({'updatedOrder':Orders});
 }
 
-const getOrderById = async (req:Request,res:Response) => { 
+const deleteOrders= async (req:Request, res:Response) => {
+    const id = req.params.id;
+    const deletedOrders= OrdersRepo.deleting(id);
+    if(!deletedOrders) res.json({'message':'Invalid Id '})
+    res.json({'message':'deletedOrder'})
+}
+
+
+const getOrdersById = async (req:Request,res:Response) => { 
         const id = req.params.id;
-        const Product= await  crud.getById(id, orderModel);
-        res.json({'LoggedIn User ':Product})
+        const Orders= await  OrdersRepo.getOrdersById(id);
+        res.json({'Orders':Orders})
 }
-export const orderController = {
-    createOrder,
-    updateOrder,
-    deleteOrder,
-    getOrderById
-}
+
+export const OrdersController = 
+    {
+        createOrders,
+        updateOrders,
+        deleteOrders,
+        getOrdersById
+
+    }
