@@ -1,10 +1,6 @@
 
 import { Request , Response } from "express";
-import { crud } from "../../CRUD/crud";
-import { Store } from "./types";
-import storeModel from "./store.model";
 import { storeRepo } from "./store.repo";
-import { json } from "body-parser";
 
 // Create store 
 const createStore = (req:Request , res:Response) => { 
@@ -24,7 +20,7 @@ const updateStore = async (req:Request,res:Response) =>{
 const deleteStore = async (req:Request, res:Response) => {
     const id = req.params.id;
     const deletedStore = storeRepo.deleting(id);
-    if(!deleteStore) res.json({'message':'Invalid Id '})
+    if(!deletedStore) res.json({'message':'Invalid Id '})
     res.json({'message':'deletedStore'})
 }
 
