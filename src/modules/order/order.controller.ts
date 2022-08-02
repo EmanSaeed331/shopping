@@ -31,7 +31,7 @@ const getOrdersById = async (req:Request,res:Response) => {
         res.json({'Orders':Orders})
 }
 
-export const OrdersController = 
+export const ordersController = 
     {
         createOrders,
         updateOrders,
