@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import { clientsController } from './clients.controller';
 
-const storeClientsRouter = Router();
+const orderClientsRouter = Router();
 
 
-storeClientsRouter.get('/:id',(req:Request , res:Response) =>{clientsController.getStore(req,res)})
+orderClientsRouter.get('/:id',(req:Request , res:Response) =>{clientsController.getOrder(req,res)})
 
-export default storeClientsRouter;
+export default orderClientsRouter;

@@ -1,12 +1,14 @@
 import express from 'express';
 import adminRouter from './admins/admins.router';
-import storeRouter from './store.route';
-import storeDeliveryRouter from './deliverys/clients.router';
 import storeClientsRouter from './clients/clients.router';
+import storeDeliveryRouter from './deliverys/clients.router';
+import storesAdminRouter from './storeAdmins/storeAdmins.router';
 
-const app = express ();
 
-app.use('/store',storeRouter);
-app.use('/store/admin',adminRouter)
-app.use('/store/delivery',storeDeliveryRouter)
-app.use('/store/client',storeClientsRouter)
+export const storesApp = express ();
+
+storesApp.use('/admin',adminRouter);
+storesApp.use('/client',storeClientsRouter)
+storesApp.use('/delivery',storeDeliveryRouter)
+storesApp.use('/storeAdmin',storesAdminRouter)
+

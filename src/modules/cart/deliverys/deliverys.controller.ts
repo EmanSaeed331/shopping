@@ -12,7 +12,7 @@ const getCart = async (req:Request , res:Response) =>{
 
 }
 
-export const storeDeliveryController = {
+export const carrtDeliveryController = {
 
     getCart
 

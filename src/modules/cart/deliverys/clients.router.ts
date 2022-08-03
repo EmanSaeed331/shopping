@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
-import { storeDeliveryController } from './deliverys.controller';
+import { carrtDeliveryController } from './deliverys.controller';
 
-const storeDeliveryRouter = Router();
+const cartDeliveryRouter = Router();
 
 
-storeDeliveryRouter.get('/:id',(req:Request , res:Response) =>{storeDeliveryController.getCart(req,res)})
+cartDeliveryRouter.get('/:id',(req:Request , res:Response) =>{carrtDeliveryController.getCart(req,res)})
 
-export default storeDeliveryRouter;
+export default cartDeliveryRouter;

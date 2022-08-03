@@ -4,6 +4,6 @@ import { couponeDeliveryController } from './deliverys.controller';
 const couponseDeliveryRouter = Router();
 
 
-couponseDeliveryRouter.get('/:id',(req:Request , res:Response) =>{couponeDeliveryController.getStore(req,res)})
+couponseDeliveryRouter.get('/:id',(req:Request , res:Response) =>{couponeDeliveryController.getCoupne(req,res)})
 
 export default couponseDeliveryRouter;
