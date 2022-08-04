@@ -10,7 +10,8 @@ export interface CreateUser{
     Phone:number,
     token:string
 }
-export class User  { 
+export class User  {
+
     constructor( 
      public firstName :string,
      public lastName:string,

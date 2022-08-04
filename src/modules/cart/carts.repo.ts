@@ -11,6 +11,7 @@ const getCartsById = async (id:string)=>{
 
   console.log(` Carts id is  ${ id }`)
   const Carts = await  crud.get({ id} , cartsModel);
+   
   return Carts;
 }
 

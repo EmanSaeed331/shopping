@@ -1,5 +1,7 @@
 import mongoose , * as Mongoose from "mongoose";
 import { ObjectId } from "mongodb";
+import bcrypt from 'bcrypt';
+
 const userSchema = new Mongoose.Schema({
     firstName :{
         type:String,
@@ -21,7 +23,6 @@ const userSchema = new Mongoose.Schema({
         required:true
      },
      wishList:[{type:ObjectId , ref:"products"}],
-     //! it must be on cart , user must have just one cart . 
      onlinePayment:[{type:ObjectId, ref:"cart"}],
      isActive:{
         type:Boolean,
@@ -31,7 +32,6 @@ const userSchema = new Mongoose.Schema({
         unique:true,
         required:true
     },
-    // ! Todo : make role as enum  || interface 
     role: {
         type:String,
         enum:['admin','user','storeAdmin','delivery']
@@ -42,12 +42,23 @@ const userSchema = new Mongoose.Schema({
         cardNumber:{type:String},
         cardDescription:{type:String},
     }, 
-    // ! db but not in schema .
-    token:{type:String}
-})
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]})
+const saltRounds = 8
+
+userSchema.pre('save', async function (next) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const user:any = this;
+    if (user.isModified('password')) {
+      user.password = await bcrypt.hash(user.password, saltRounds) ;
+    }
+    next();
+   });
 const userModel = mongoose.model('User',userSchema)
 export default userModel;
 
 
-// ! TOdo --> add product to wish List , remove wishList  ( Add to repo )
-// ! Bcrypt for password Presave
