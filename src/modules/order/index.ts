@@ -6,6 +6,6 @@ import storesAdminRouter from './storeAdmins/storeAdmins.router';
 
 export const orderApp =  express();
 orderApp.use('/storesAdmin',storesAdminRouter);
-orderApp.use('/productDelivery',productDeliveryRouter);
-orderApp.use('/Clients',orderClientsRouter)
+orderApp.use('/delivery',productDeliveryRouter);
+orderApp.use('/clients',orderClientsRouter)
 orderApp.use('/admin',adminRouter)

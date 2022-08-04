@@ -14,12 +14,12 @@ app.use(json());
 require('./config/db')
 
 app.use(userApp)
-app.use('/users',userApp);
-app.use('/stores',storesApp);
-app.use('/products',productApp);
-app.use('/orders',orderApp);
-app.use('/coupons',couponApp);
-app.use('/carts',cartApp)
+app.use('/api/v1/users',userApp);
+app.use('/api/v1/stores',storesApp);
+app.use('/api/v1/products',productApp);
+app.use('/api/v1/orders',orderApp);
+app.use('/api/v1/coupon',couponApp);
+app.use('/api/v1/carts',cartApp)
 
 
 

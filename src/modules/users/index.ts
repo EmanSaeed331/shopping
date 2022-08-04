@@ -6,7 +6,7 @@ import adminStoreRouter from "./storeAdmin/adminStore.routes";
 
 export const userApp = express();
 
-userApp.use('/adminStore',adminStoreRouter);
+userApp.use('/storeAdmin',adminStoreRouter);
 userApp.use('/delivery',deliveryRouter);
 userApp.use('/client',userRouter);
 userApp.use('/admin',adminRouter);

@@ -1,15 +1,19 @@
 import { Request , Response } from "express";
+import { activationMsg } from "../activation";
 import { userRepository } from "../user.repositry";
 
 // Create Client 
 const createClient = async (req:Request , res:Response) => { 
     const data = req.body
+    const email = req.body.email;
+    const name = req.body.firstName;
     console.log(`Data ${data}`);
     const client = await userRepository.signUp(data);
 
     const token = await client.generateAuthToken()
     
     console.log(`client ${client}`);
+    activationMsg(email,name,token);
 
     res.json({'Client':client , 'token':token});
 }

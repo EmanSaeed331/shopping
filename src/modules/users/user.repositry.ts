@@ -6,8 +6,6 @@ import bcrypt from 'bcrypt';
 
 const signUp = async(data:CreateUser)=>{
   const user =  await crud.create(data,userModel);
-  console.log(`from userRepo ${user}`)
-  
   return user;
 }
 const login = async (email:string , password:string)=>{

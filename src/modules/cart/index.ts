@@ -6,7 +6,7 @@ import storesAdminRouter from './storeAdmins/storeAdmins.router';
 
 export const cartApp = express();
 
-cartApp.use('/admin',adminRouter);
+cartApp.use('/admins',adminRouter);
 cartApp.use('/client',cartClientsRouter);
 cartApp.use('/delivery',cartDeliveryRouter);
 cartApp.use('/storeAdmin',storesAdminRouter)
