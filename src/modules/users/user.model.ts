@@ -1,6 +1,8 @@
 import mongoose , * as Mongoose from "mongoose";
 import { ObjectId } from "mongodb";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config' ;
 
 const userSchema = new Mongoose.Schema({
     firstName :{
@@ -18,7 +20,7 @@ const userSchema = new Mongoose.Schema({
         required:true
     },
      password:{
-        type:Number,
+        type:String,
         minLength:6,
         required:true
      },
@@ -39,7 +41,7 @@ const userSchema = new Mongoose.Schema({
 
      creditCard:{
         cardType:{type:String },
-        cardNumber:{type:String},
+        cardNumber:{type:Number},
         cardDescription:{type:String},
     }, 
     tokens: [{
@@ -58,6 +60,15 @@ userSchema.pre('save', async function (next) {
     }
     next();
    });
+
+   userSchema.methods.generateAuthToken = async function () {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const user:any = this;
+    const token = jwt.sign({ _id: user._id, role:user.role , email:user.email}, process.env.TOKEN as string)
+    user.tokens = await user.tokens.concat({token})
+    await user.save()
+    return token
+}
 const userModel = mongoose.model('User',userSchema)
 export default userModel;
 

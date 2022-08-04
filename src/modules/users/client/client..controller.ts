@@ -2,37 +2,50 @@ import { Request , Response } from "express";
 import { userRepository } from "../user.repositry";
 
 // Create Client 
-const createClient = (req:Request , res:Response) => { 
+const createClient = async (req:Request , res:Response) => { 
     const data = req.body
-    const Client = userRepository.signUp(data)
-    res.json({'user':Client});
+    console.log(`Data ${data}`);
+    const client = await userRepository.signUp(data);
+
+    const token = await client.generateAuthToken()
+    
+    console.log(`client ${client}`);
+
+    res.json({'Client':client , 'token':token});
 }
 
 // Read Client 
-const loginClient = (req:Request,res:Response)=>{
+const loginClient =async ( req:Request,res:Response)=>{
     const email = req.body.email;
     const password = req.body.password;
-    const Client = userRepository.login(email,password);
-    if(!Client) res.json({ message:'wrong email or password '});
-    res.json({'Client':Client})
+    const client = await userRepository.login(email,password);
+    if(!client) {throw Error}
+    return res.json({'Client':client})
 }
 // update Client 
-const updateClient = (req:Request, res:Response) => {
+const updateClient = async (req:Request, res:Response) => {
     const id = req.params.id;
-    const updateClient = userRepository.updating(id);
+    const client = req.body;
+    const updateClient =await  userRepository.updating(id,client);
     if(!updateClient) res.json({'message':'wrong id '});
     res.json({'Client':updateClient});
 }
 
-const deleteClient = (req:Request,res:Response) =>{
+const deleteClient = async(req:Request,res:Response) =>{
     const id = req.params.id;
-    const deletedClient = userRepository.deleting(id);
-    if (!deleteClient) res.json({'message':'wrong id'});
-    res.json({'deletedClient':deletedClient});
+    const deletedClient = await userRepository.deleting(id);
+    if (!deletedClient) res.json({'message':'wrong id'});
+    res.json({'message':'deleted successfully '});
+}
+const readProfile =async  (req:Request , res:Response)=>{
+    const user = await userRepository.reading();
+    console.log(`user++ ${user}`)
+    res.json({'user':user})
 }
 export const clientController = {
     createClient,
     updateClient,
     deleteClient,
-    loginClient
+    loginClient,
+    readProfile
 }

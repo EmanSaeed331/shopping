@@ -19,7 +19,8 @@ const loginAdmin = (req:Request,res:Response)=>{
 // update admin 
 const updateAdmin = (req:Request, res:Response) => {
     const id = req.params.id;
-    const updateAdmin = userRepository.updating(id);
+    const adminStore = req.body;
+    const updateAdmin = userRepository.updating(id,adminStore);
     if(!updateAdmin) res.json({'message':'wrong id '});
     res.json({'admin':updateAdmin});
 }

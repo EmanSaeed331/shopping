@@ -5,6 +5,7 @@ import { productApp } from './modules/products';
 import { orderApp } from './modules/order';
 import { couponApp } from './modules/coupons';
 import { cartApp } from './modules/cart';
+import { storesApp } from './modules/stores';
 
 
 const app = express ();
@@ -12,12 +13,13 @@ app.use(json());
 
 require('./config/db')
 
-app.use('/user',userApp);
-app.use('/stores',userApp);
+app.use(userApp)
+app.use('/users',userApp);
+app.use('/stores',storesApp);
 app.use('/products',productApp);
-app.use('/order',orderApp);
-app.use('/coupon',couponApp);
-app.use('/cart',cartApp)
+app.use('/orders',orderApp);
+app.use('/coupons',couponApp);
+app.use('/carts',cartApp)
 
 
 

@@ -4,8 +4,8 @@ import storeModel from "./store.model";
 import { crud } from "../../CRUD/crud";
 
 const createStore = async(data:StoteType)=>{
-  const user =  await crud.create({data},storeModel);
-  return user;
+  const store =  await crud.create(data,storeModel);
+  return store;
 }
 const getStoreById = async (id:string)=>{
 

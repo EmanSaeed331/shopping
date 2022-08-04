@@ -11,7 +11,6 @@ export interface CreateUser{
     token:string
 }
 export class User  {
-
     constructor( 
      public firstName :string,
      public lastName:string,

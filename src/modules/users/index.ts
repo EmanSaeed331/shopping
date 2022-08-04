@@ -8,5 +8,5 @@ export const userApp = express();
 
 userApp.use('/adminStore',adminStoreRouter);
 userApp.use('/delivery',deliveryRouter);
-userApp.use('/user',userRouter);
+userApp.use('/client',userRouter);
 userApp.use('/admin',adminRouter);

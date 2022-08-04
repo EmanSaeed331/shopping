@@ -5,7 +5,9 @@ import bcrypt from 'bcrypt';
 
 
 const signUp = async(data:CreateUser)=>{
-  const user =  await crud.create({data},userModel);
+  const user =  await crud.create(data,userModel);
+  console.log(`from userRepo ${user}`)
+  
   return user;
 }
 const login = async (email:string , password:string)=>{
@@ -18,7 +20,7 @@ const login = async (email:string , password:string)=>{
     const foundUser:any = await userModel.findOne({email});
  
     if (!foundUser) {
-      throw new Error('Name of user is not correct');
+      throw new Error('Email of client is not correct');
     }
  
     const isMatch = bcrypt.compareSync(password,foundUser.password);
@@ -29,17 +31,17 @@ const login = async (email:string , password:string)=>{
       throw new Error('Password is not correct');
     }
   } catch (error) {
-    throw error;
+    console.log(`errorrr++${error}`)
   }
 }
 
-const updating = async(id:string)=>{
-    const user =await crud.update(id , User , userModel) ; 
+const updating = async(id:string , data:CreateUser)=>{
+    const user =await crud.update(id , data , userModel) ; 
     if (!user) { 
      console.log('user Not found')
      return ' User not found '
     }
-  
+    console.log(`${user}`)
     return user; }
 
 const deleting = async(id:string)=>{
@@ -53,12 +55,17 @@ const deleting = async(id:string)=>{
   return user;
 }
 
+const reading = async()=>{
+  const user =await  crud.read(userModel);
+  return user ;
+}
 
 export const userRepository = { 
   
    signUp,
    login,
    updating,
-   deleting
+   deleting,
+   reading
     
 }

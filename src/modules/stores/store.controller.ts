@@ -3,10 +3,11 @@ import { Request , Response } from "express";
 import { storeRepo } from "./store.repo";
 
 // Create store 
-const createStore = (req:Request , res:Response) => { 
+const createStore =async  (req:Request , res:Response) => { 
     const store = req.body;
-    const storeData = storeRepo.createStore(store);
-    res.json({'user':storeData});
+    const storeData = await storeRepo.createStore(store);
+    
+    res.json({'store':storeData});
 }
 
 

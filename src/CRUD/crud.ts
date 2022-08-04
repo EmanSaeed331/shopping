@@ -1,9 +1,11 @@
 
    // Create u
-  async function create(data:object , model:any){
-        const newObj = await new model({data});
+   async function create<T>(data:T , model:any){
+        const newObj = await new model(data);
+        console.log(`from CRUD ${newObj}`)
+        await newObj.save()
         return newObj;
-         }
+     }
     // read  all users 
     async function read(model:any){
         return await model.find({});
@@ -13,7 +15,7 @@
     }
     // update
     async function update<T>(id:string, data:T , model:any){
-        return await model.findByIdAndUpdate(id,data);
+        return  await model.findByIdAndUpdate(id,data); 
     }
     // delete
     async function remove(id:string , model:any){

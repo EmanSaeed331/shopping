@@ -19,7 +19,8 @@ const loginDelivery = (req:Request,res:Response)=>{
 // update delivery 
 const updateDelivery = (req:Request, res:Response) => {
     const id = req.params.id;
-    const updatedelivery = userRepository.updating(id);
+    const delivery = req.body;
+    const updatedelivery = userRepository.updating(id,delivery);
     if(!updatedelivery) res.json({'message':'wrong id '});
     res.json({'delivery':updatedelivery});
 }
