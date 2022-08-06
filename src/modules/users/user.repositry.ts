@@ -1,7 +1,8 @@
-import { CreateUser, User } from "./client/types";
+import { CreateUser} from "./client/types";
 import userModel from "./user.model";
 import { crud } from "../../CRUD/crud";
 import bcrypt from 'bcrypt';
+import {sendVerificationEmail} from'./auth.controller';
 
 
 const signUp = async(data:CreateUser)=>{
@@ -39,6 +40,7 @@ const updating = async(id:string , data:CreateUser)=>{
      console.log('user Not found')
      return ' User not found '
     }
+
     console.log(`${user}`)
     return user; }
 
@@ -58,6 +60,8 @@ const reading = async()=>{
   return user ;
 }
 
+// !Todo : 1- reset Password 
+// !Todo : 2- Resend Verification Token
 export const userRepository = { 
   
    signUp,

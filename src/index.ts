@@ -6,9 +6,10 @@ import { orderApp } from './modules/order';
 import { couponApp } from './modules/coupons';
 import { cartApp } from './modules/cart';
 import { storesApp } from './modules/stores';
-
+import cors from 'cors';
 
 const app = express ();
+app.use(cors());
 app.use(json());
 
 require('./config/db')
@@ -24,15 +25,7 @@ app.use('/api/v1/carts',cartApp)
 
 
 
-/* app.use('/user',userRouter);
-app.use('/storeAdmin',adminStoreRouter);
-app.use('/admin',adminRouter);
-app.use('/delivery',deliveryRouter);
-app.use('/stores',storeRouter);
-app.use('/products',productRouter);
-app.use('/order',orderRouter);
-//app.use('/coupons',couponseRouter);
-app.use('/cart',cartsRouter); */
+
 
 app.listen (process.env.PORT , () => { 
     console.log('server is running on port 3000')

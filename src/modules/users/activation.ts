@@ -9,7 +9,11 @@ export const activationMsg = (email:string,name:string,token:any) => {
         subject: 'Sending with SendGrid is Fun',
         text: 'and easy to do anywhere, even with Node.js',
         link:`http://"+req.headers.host+"/api/auth/verify/+${token}`,
-        html: `<p>Hi ${name}<p><br><p>Please click on the following <a href="#">link</a> to verify your account.</p>`,
+        html: 
+        ` <body>
+              <p>Hi ${name}<p><br><p>Please click on the following <a href="yoururl/password/reset/${token}">Reset password</a> to verify your account.</p>
+          <body>
+          `,
       }
       sgMail
         .send(msg)
