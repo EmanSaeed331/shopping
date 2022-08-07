@@ -1,4 +1,4 @@
-# E-commerce-api 
+# Shopping-api 
 An  E-commerce API 😻
 
 # Installation 
