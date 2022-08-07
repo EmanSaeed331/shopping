@@ -6,8 +6,7 @@ const productSchema = new mongoose.Schema({
     productName:{type:String},
     productDescription:{type:String},
     price:{type:Number},
-    discount:{type:Number},
-    // ! refrence for store 
+    discount:{type:Number}, 
     storeId:{type:ObjectId,ref:'Store'},
     image:{type:String},
     category:{type:String, enum:['Electronics','Clothing, Shoes, and Jewelry','Home and Kitchen','Beauty and Personal Care','Books','Pet Supplies','Sports and Outdoors']},

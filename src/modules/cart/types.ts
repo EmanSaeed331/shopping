@@ -1,8 +1,9 @@
 export interface CartsType {
-     items:string,
+     items:string | any ,
      userId:string,
      coupon:string,
-     totalPrice:number
+     totalPrice:number,
+     totalPriceAfterDiscount: number
 }
 
 export class Carts {

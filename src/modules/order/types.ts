@@ -1,6 +1,6 @@
 export interface OrdersType {
 
-     userId:string,
+     userId:object,
      price:number,
      items:[{
         product: string

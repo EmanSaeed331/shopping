@@ -22,11 +22,6 @@ app.use('/api/v1/orders',orderApp);
 app.use('/api/v1/coupon',couponApp);
 app.use('/api/v1/carts',cartApp)
 
-
-
-
-
-
 app.listen (process.env.PORT , () => { 
     console.log('server is running on port 3000')
 });
