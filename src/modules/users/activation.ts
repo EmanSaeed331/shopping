@@ -11,7 +11,7 @@ export const activationMsg = (email:string,name:string,token:any) => {
         link:`http://"+req.headers.host+"/api/auth/verify/+${token}`,
         html: 
         ` <body>
-              <p>Hi ${name}<p><br><p>Please click on the following <a href="yoururl/password/reset/${token}">Reset password</a> to verify your account.</p>
+              <p>Hi ${name}<p><br><p>Please click on the following <a href="yoururl/email/activation/${token}">Verify account</a> to verify your account.</p>
           <body>
           `,
       }

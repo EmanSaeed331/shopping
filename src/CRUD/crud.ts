@@ -11,7 +11,7 @@
         return await model.find({});
     }
     async function get(model:any , filter:object){
-        return await model.find(filter);
+        return await model.findOne(filter);
     }
     // update
     async function update<T>(id:string, data:T , model:any){

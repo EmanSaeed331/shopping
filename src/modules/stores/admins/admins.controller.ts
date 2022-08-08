@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
+import storeModel from "../store.model";
 import { storeRepo } from "../store.repo";
 
-const createStore = (req:Request , res:Response) => { 
+const createStore = async(req:Request , res:Response) => { 
     const store = req.body;
-    const storeData = storeRepo.createStore(store);
-    res.json({'user':storeData});
+    const storeData =await storeRepo.createStore(store);
+    res.json({'store':storeData});
 }
 
 
@@ -25,6 +26,7 @@ const deleteStore = async (req:Request, res:Response) => {
 
 const getStore = async (req:Request , res:Response) =>{
     const id = req.params.id;
+ 
     const store = storeRepo.getStoreById(id);
     if (!store) res.json({'store':'not found'});
     res.json({'store':store});

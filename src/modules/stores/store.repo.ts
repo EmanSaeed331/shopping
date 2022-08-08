@@ -10,7 +10,7 @@ const createStore = async(data:StoteType)=>{
 const getStoreById = async (id:string)=>{
 
   console.log(` Store id is  ${ id }`)
-  const store = await  crud.get({ id} , storeModel);
+  const store = await  crud.get({id} , storeModel);
   return store;
 }
 
@@ -34,12 +34,17 @@ const deleting = async(id:string)=>{
   return store;
 }
 
+const getAllStores = async ()=>{
 
+  const store = await  crud.read(storeModel);
+  return store;
+}
 export const storeRepo = { 
   
   createStore,
   getStoreById,
   updating,
-  deleting
+  deleting , 
+  getAllStores
     
 }

@@ -38,7 +38,8 @@ const userSchema = new Mongoose.Schema({
     },
     role: {
         type:String,
-        enum:['admin','user','storeAdmin','delivery']
+        enum:['admin','client','storeAdmin','delivery'],
+        required: true,
     },
 
      creditCard:{

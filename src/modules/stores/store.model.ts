@@ -13,7 +13,7 @@ const storeSchema = new Mongoose.Schema({
       type:ObjectId,
       ref:'products'
    },
-   admins:[{type:ObjectId , ref:'Admin', required:true}],
+   admins:[{type:ObjectId , ref:'User', required:true}],
 })
 const storeModel = mongoose.model('Store',storeSchema)
 export default storeModel;

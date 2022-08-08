@@ -2,7 +2,7 @@ import { CreateUser} from "./client/types";
 import userModel from "./user.model";
 import { crud } from "../../CRUD/crud";
 import bcrypt from 'bcrypt';
-import {sendVerificationEmail} from'./auth.controller';
+
 
 
 const signUp = async(data:CreateUser)=>{

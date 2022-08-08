@@ -3,6 +3,7 @@ import { crud } from "../../../CRUD/crud";
 import { activationMsg } from "../activation";
 import { userRepository } from "../user.repositry";
 import {uploader} from '../../../utils/api_auth_util'
+import userModel from "../user.model";
 
 // Create Client 
 const createClient = async (req:Request , res:Response) => { 
@@ -33,11 +34,11 @@ const updateClient = async (req:Request, res:Response) => {
     const id = req.params.id;
     const client = req.body;
     const updateClient =await  userRepository.updating(id,client);
-    const result:any = await uploader(req);
-    const user_ = await crud.get(id,  {$set: {profileImage: result.url}});
+    //const result:any = await uploader(req);
+   // const user= await crud.get(id,  {$set: {profileImage: result.url}});
     if(!updateClient) res.json({'message':'wrong id '});
 
-    if (!req.file) return res.status(200).json({user: user_, message: 'User has been updated'});
+ //   if (!req.file) return res.status(200).json({user: user, message: 'User has been updated'});
 
     res.json({'Client':updateClient});
 }
