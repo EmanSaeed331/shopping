@@ -1,5 +1,5 @@
 # Shopping-api 
-An  E-commerce API 😻
+An  Shopping Api 😻
 
 # Installation 
 ```
@@ -11,6 +11,12 @@ An  E-commerce API 😻
 | :-------- | :----|-------------|
 |DB_CONN_STRING| string | **Required** for connecting in DB |
 |PORT| number | **Required** port |
+|TOKEN| number | **Required** TOKEN |
+|SENDGRID_API_KEY| string | **Required** sendGrid  |
+|CLOUD_NAME| string | **Required** cloudName |
+|CLOUD_API_KEY| string | **Required** CLOUD_API_KEY |
+|CLOUD_API_SECRET| string | **Required** CLOUD_API_SECRET |
+|STRIPE_SECRET_KEY| string | **Required** payment secret key |
 
 # run app 
 ```
@@ -55,6 +61,6 @@ An  E-commerce API 😻
       │       └───storeAdmin
       └───types
           └───express
-# 📖 API-Documentation 
 
+# 📖 API-Documentation 
 #### API [Documentation](https://documenter.getpostman.com/view/11682336/UzdtWSyB)
