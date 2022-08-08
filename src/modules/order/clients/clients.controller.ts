@@ -14,7 +14,6 @@ const createOrder = async (req:Request , res:Response) => {
     res.json({'user':orderData});
 }
 
-
 const updateOrder = async (req:Request,res:Response) =>{
     const id = req.params.id; 
     const updatedOrder = await OrdersRepo.updating(id);
@@ -29,19 +28,25 @@ const deleteOrder = async (req:Request, res:Response) => {
     res.json({'message':'deletedOrder'})
 }
 
-
 const getOrder = async (req:Request , res:Response) =>{
     const id = req.params.id;
     const Order = OrdersRepo.getOrdersById(id);
     if (!Order) res.json({'Order':'not found'});
     res.json({'Order':Order});
 }
+const checkoutOrder  = async (req:Request , res:Response) =>{
+    const userName = req.body;
+    const cartId = req.params.cartId;
 
+    const session = OrdersRepo.checkout(cartId , userName);
+    res.json({'checkout ':session})
+}
 export const clientsController = {
 
     createOrder,
     updateOrder,
     deleteOrder,
-    getOrder
+    getOrder,
+    checkoutOrder
 
 }

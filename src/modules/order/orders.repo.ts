@@ -55,7 +55,7 @@ const deleting = async(id:string)=>{
  
   return Orders;
 }
-const checkout = async(cartId:string,clientName:string , clientPhone:string , req: Request , res:Response)=>{
+const checkout = async(cartId:string,clientName:string  )=>{
   const cart = await cartsModel.findById(cartId);
   if(!cart) {return 'cart is not valid'}
 

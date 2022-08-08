@@ -61,7 +61,7 @@ const createCarts = async(data:CartsType)=>{
 const getCartsById = async (id:string)=>{
 
   console.log(` Carts id is  ${ id }`)
-  const carts = await  crud.get({ id} , cartsModel);
+  const carts = await  crud.get({id} , cartsModel);
    
   return carts;
 }
