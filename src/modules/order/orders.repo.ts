@@ -3,7 +3,9 @@ import { OrdersType,Orders } from "./types";
 import ordersModel from "./order.model";
 import { crud } from "../../CRUD/crud";
 import cartsModel from "../cart/carts.model";
-
+import Stripe from 'stripe';
+const secret = process.env.STRIPE_SECRET_KEY
+const stripe = new Stripe(secret as string );
 
 
 const CreatingOrder = async(userId:any , cartId:any , shippingAddress:OrdersType )=>{
@@ -53,7 +55,28 @@ const deleting = async(id:string)=>{
  
   return Orders;
 }
+const checkout = async(cartId:string,clientName:string , clientPhone:string , req: Request , res:Response)=>{
+  const cart = await cartsModel.findById(cartId);
+  if(!cart) {return 'cart is not valid'}
 
+  const cartPrice = cart.totalPriceAfterDiscount ? cart.totalPriceAfterDiscount : cart.totalPrice ; 
+  // Create strip checkout session 
+
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        name: clientName,
+        amount: cartPrice! * 100,
+        currency: 'egp',
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: `localhost:3000/orders`,
+    cancel_url: `localhost:3000/orders/cart`,
+  });
+  return session;
+}
 
 export const OrdersRepo = { 
   
@@ -61,6 +84,7 @@ export const OrdersRepo = {
   getOrdersById,
   updating,
   deleting,
-  CreatingOrder
+  CreatingOrder,
+  checkout
     
 }
