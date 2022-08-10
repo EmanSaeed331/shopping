@@ -1,21 +1,22 @@
 
-import { StoteType,Store } from "./types";
+import { StoreType} from "./types";
 import storeModel from "./store.model";
 import { crud } from "../../CRUD/crud";
 
-const createStore = async(data:StoteType)=>{
+const createStore = async(data:StoreType)=>{
   const store =  await crud.create(data,storeModel);
   return store;
 }
+
 const getStoreById = async (id:string)=>{
 
   console.log(` Store id is  ${ id }`)
-  const store = await  crud.get({id} , storeModel);
+  const store = await  crud.getById(id , storeModel);
   return store;
 }
 
-const updating = async(id:string)=>{
-    const store =await crud.update(id , Store , storeModel) ; 
+const updating = async(id:string , data:StoreType)=>{
+    const store =await crud.update(id ,data,storeModel) ; 
     if (!store) { 
      console.log('store Not found')
      return ' store not found '
@@ -39,12 +40,18 @@ const getAllStores = async ()=>{
   const store = await  crud.read(storeModel);
   return store;
 }
+
+const readStores = async()=>{
+  const stores =await crud.read(storeModel);
+  return stores ;
+}
 export const storeRepo = { 
   
   createStore,
   getStoreById,
   updating,
   deleting , 
-  getAllStores
+  getAllStores ,
+  readStores
     
 }

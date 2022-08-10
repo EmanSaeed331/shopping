@@ -10,7 +10,8 @@ const createStore = (req:Request , res:Response) => {
 
 const updateStore = async (req:Request,res:Response) =>{
     const id = req.params.id; 
-    const updatedStore = await storeRepo.updating(id);
+    const data = req.body;
+    const updatedStore = await storeRepo.updating(id, data);
     if(!updateStore) res.json({'message':'invalid store'});
     res.json({'updatedStore':updatedStore});
 }

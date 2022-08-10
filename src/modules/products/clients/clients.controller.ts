@@ -5,15 +5,19 @@ import { productsRepo } from "../product.repo"
 
 const getProduct = async (req:Request , res:Response) =>{
     const id = req.params.id;
-    const store = productsRepo.getProductById(id);
-    if (!store) res.json({'store':'not found'});
-    res.json({'store':store});
-
+    const product = await productsRepo.getProductById(id);
+    if (!product) res.json({'product':'not found'});
+    res.json({'product':product});
 
 }
 
+const showAllProducts = async (req:Request , res:Response)=>{ 
+    const products =await  productsRepo.getAllProducts();
+    res.json({'Products':products})
+}
 export const clientsController = {
 
-    getProduct
+    getProduct,
+    showAllProducts
 
 }

@@ -1,11 +1,35 @@
 
 import { Request , Response } from "express";
+import storeModel from "./store.model";
 import { storeRepo } from "./store.repo";
 
+
+/*
+   storeName:String,
+   about:String,
+   rating:{
+      type:Number , 
+      enum:[0,1,2,3,4,5]
+   },
+   category:{
+      type:ObjectId,
+      ref:'products'
+   },
+   admins:[{type:ObjectId , ref:'User', required:true}],
+
+*/ 
 // Create store 
 const createStore =async  (req:Request , res:Response) => { 
-    const store = req.body;
-    const storeData = await storeRepo.createStore(store);
+   /*  const {store} = req.body;
+    const admin = req.User._id; */
+
+    const storeData = await storeModel.create({
+        admins:req.params._id,
+        storeName:req.body,
+        about:req.body,
+        rating:req.body,
+       // category:req.products._id ,
+    })
     
     res.json({'store':storeData});
 }
@@ -13,7 +37,8 @@ const createStore =async  (req:Request , res:Response) => {
 
 const updateStore = async (req:Request,res:Response) =>{
     const id = req.params.id; 
-    const updatedStore = await storeRepo.updating(id);
+    const updateData = req.body;
+    const updatedStore = await storeRepo.updating(id , updateData);
     if(!updateStore) res.json({'message':'invalid store'});
     res.json({'updatedStore':updatedStore});
 }

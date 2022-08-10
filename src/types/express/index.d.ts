@@ -19,4 +19,7 @@ declare namespace Express {
   export interface Response {
       user: any;
   }
+  export interface Response {
+    products: any;
+}
 }

@@ -4,6 +4,7 @@ import { storeDeliveryController } from './deliverys.controller';
 const storeDeliveryRouter = Router();
 
 
-storeDeliveryRouter.get('/:id',(req:Request , res:Response) =>{storeDeliveryController.getStore(req,res)})
+storeDeliveryRouter.get('/readStore/:id',(req:Request , res:Response) =>{storeDeliveryController.getStore(req,res)})
+storeDeliveryRouter.get('/allStores',(req:Request , res:Response) =>{storeDeliveryController.showAllStores(req,res)})
 
 export default storeDeliveryRouter;

@@ -4,13 +4,18 @@ import productModel from "./products.model";
 import { crud } from "../../CRUD/crud";
 
 const createProduct = async(data:ProductsType)=>{
-  const product =  await crud.create({data},productModel);
+
+  const product =  await crud.create(data,productModel);
   return product;
+}
+
+const getAllProducts = async  ()=>{ 
+  await crud.read(productModel);
 }
 const getProductById = async (id:string)=>{
 
   console.log(` Product id is  ${ id }`)
-  const product = await  crud.get({ id} , productModel);
+  const product = await  crud.getById(id , productModel);
   return product;
 }
 
@@ -40,6 +45,7 @@ export const productsRepo = {
   createProduct,
   getProductById,
   updating,
-  deleting
+  deleting,
+  getAllProducts
     
 }

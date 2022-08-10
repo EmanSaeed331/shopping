@@ -11,7 +11,7 @@
         return await model.find({});
     }
     async function get(model:any , filter:object){
-        return await model.findOne(filter);
+        return await model.findById({filter});
     }
     // update
     async function update<T>(id:string, data:T , model:any){
@@ -24,7 +24,7 @@
 
     // get data by Id 
     async function getById (id:string,model:any){
-        const data = await model.findOne ({id});
+        const data = await model.findById({id});
         if(!data) {
             return 'id is not valid';
         }

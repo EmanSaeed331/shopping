@@ -1,4 +1,4 @@
-export interface StoteType {
+export interface StoreType {
      storeName :string,
      about:string,
      rating:string,

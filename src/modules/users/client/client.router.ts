@@ -11,7 +11,7 @@ userRouter.post('/signup',(req:Request,res:Response)=>{clientController.createCl
 userRouter.patch('/:id',auth,(req:Request,res:Response)=> {clientController.updateClient(req,res)});
 userRouter.patch('/:id',auth,upload,(req:Request,res:Response)=> {clientController.updateClient(req,res)});
 userRouter.delete('/:id',auth,(req:Request,res:Response)=> {clientController.deleteClient(req,res)})
-userRouter.get('/profile',auth ,(req:Request,res:Response)=> {clientController.readProfile(req,res)})
+userRouter.get('/profile' ,(req:Request,res:Response)=> {clientController.readProfile(req,res)})
 
 
 export default userRouter;
