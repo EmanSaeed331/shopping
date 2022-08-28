@@ -1,5 +1,5 @@
-# Shopping-api 
-An  Shopping Api 😻
+# Shopping-api 😻
+A Shopping Api is an apis for diffrent stores , diffent type of admins and fully completed features for customer 
 
 # Installation 
 ```
