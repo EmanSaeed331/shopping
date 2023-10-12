@@ -62,7 +62,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "prettier --write . && git add -A .",
-      "pre-push": "npm test."
+      "pre-push": "npm run test."
 
     }
   }
