@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev --files src/index.ts",
     "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix"
+    "format": "eslint src/**/*.ts --fix",
+    "pre-commit": "eslint . --fix && git add ."
+
   },
   "author": "",
   "license": "ISC",
@@ -30,7 +32,6 @@
     "datauri": "^3.0.0",
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
-    "husky": "^8.0.3",
     "i": "^0.3.7",
     "jade": "^0.29.0",
     "joi": "^17.6.0",
@@ -53,7 +54,8 @@
     "@types/mongoose": "^5.11.97",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
-    "eslint": "^8.20.0",
+    "eslint": "^8.51.0",
+    "husky": "^8.0.3",
     "prettier": "^2.7.1",
     "ts-node": "^10.8.2",
     "ts-node-dev": "^2.0.0",
@@ -61,9 +63,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "prettier --write . && git add -A .",
-      "pre-push": "npm run test."
-
+      "pre-commit": "npm run pre-commit"
     }
   }
 }
