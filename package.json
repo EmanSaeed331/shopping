@@ -7,7 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev --files src/index.ts",
     "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix"
+    "format": "eslint src/**/*.ts --fix",
+    "husky": {
+      "hooks": {
+        "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
+        "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
+        "post-applypatch": "echo \"[Husky] post-applypatch\"",
+        "pre-commit": "echo \"[Husky] pre-commit\""
+      }
+    }
   },
   "author": "",
   "license": "ISC",
